@@ -20,10 +20,14 @@ export class StarshipsComponent implements OnInit {
   }
 
   getAllStarships():void{
-    this.starwarsApiService.getAllStarships()
+      this.starships = []; 
+      this.starwarsApiService.getAllStarships()
       .subscribe( (starshipsResponse) => 
       this.starships=starshipsResponse.results
       );
   }
+
+  
+  
 
 }
