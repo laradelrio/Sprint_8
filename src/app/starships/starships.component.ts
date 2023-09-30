@@ -10,7 +10,7 @@ import { ApiResponse, Starship } from '../interfaces/starship.interface';
 export class StarshipsComponent implements OnInit {
 
   starships: Starship[] = [ ]
-  
+
   constructor(
     private starwarsApiService: StarwarsApiService
   ){}
@@ -19,12 +19,13 @@ export class StarshipsComponent implements OnInit {
     this.getAllStarships();
   }
 
-  getAllStarships():void{
-      this.starships = []; 
+  getAllStarships():void{      
       this.starwarsApiService.getAllStarships()
       .subscribe( (starshipsResponse) => 
-      this.starships=starshipsResponse.results
+        this.starships=starshipsResponse.results
       );
+    
+    
   }
 
   
