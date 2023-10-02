@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { StarwarsApiService } from '../services/starwars-api.service';
 import { ApiResponse, Starship } from '../interfaces/starship.interface';
+import { StarshipComponent } from './components/starship/starship.component';
 
 @Component({
   selector: 'app-starships',
@@ -8,11 +9,12 @@ import { ApiResponse, Starship } from '../interfaces/starship.interface';
   styleUrls: ['./starships.component.scss']
 })
 export class StarshipsComponent implements OnInit {
+  @ViewChild(StarshipComponent) starshipComponent!: StarshipComponent;
 
   starships: Starship[] = [ ]
 
   constructor(
-    private starwarsApiService: StarwarsApiService
+    private starwarsApiService: StarwarsApiService,
   ){}
 
   ngOnInit(): void {
@@ -23,9 +25,11 @@ export class StarshipsComponent implements OnInit {
       this.starwarsApiService.getAllStarships()
       .subscribe( (starshipsResponse) => 
         this.starships=starshipsResponse.results
-      );
-    
-    
+      );  
+  }
+
+  showStarship(starship: Starship){
+    this.starshipComponent.showStarship(starship);
   }
 
   

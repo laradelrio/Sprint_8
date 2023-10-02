@@ -1,7 +1,10 @@
 <app-starships-spinner *ngIf="starships.length===0"></app-starships-spinner>
 <div class="container w-75 pt-2">
-    <div *ngFor="let starship of starships" class="rounded bg-secondary pb-2 ps-3 pt-3 m-4 text-light">
+    <div *ngFor="let starship of starships" 
+        class="rounded bg-secondary pb-2 ps-3 pt-3 m-4 text-light"
+        (click)="showStarship(starship)">
         <h6>{{starship.name | uppercase}}</h6>
         <p>{{starship.model}}</p>
     </div>  
+    <app-starships-starship></app-starships-starship>
 </div>

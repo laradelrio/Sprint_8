@@ -1,0 +1,22 @@
+<div class="text-light">
+    <h6> <b>{{starship.name | uppercase}}</b> </h6>
+    <div class="d-flex row">
+        <div class="col-4 ">photo
+            <img [src]="shipImg" (error)="handleImageError($event)"/>
+            
+        
+        </div>
+        <ul class="col-8 row ">
+            <section class="col-6">
+                <li> <b>Model:</b> {{starship.model}} </li>
+                <li> <b>Cost in Credits:</b> {{starship.cost_in_credits}}</li>
+                <li> <b>Atmospheric Speed:</b> {{starship.max_atmosphering_speed}}</li>
+            </section>
+            <section class="col-6">
+                <li> <b>Manufacturer:</b> {{starship.manufacturer}}</li>
+                <li> <b>Length:</b> {{starship.length}}</li>
+                <li> <b>Crew:</b> {{starship.crew}}</li>
+            </section>
+        </ul>
+    </div>
+</div>
