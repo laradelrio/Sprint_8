@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Starship, StarshipImg } from 'src/app/interfaces/starship.interface';
 import { StarwarsApiService } from 'src/app/services/starwars-api.service';
 
@@ -7,39 +7,35 @@ import { StarwarsApiService } from 'src/app/services/starwars-api.service';
   templateUrl: './starship.component.html',
   styleUrls: ['./starship.component.scss']
 })
-export class StarshipComponent {
+export class StarshipComponent implements OnInit{
 
   starship: Starship = {
     name: "",
     model: "",  
   }
-  
+
   shipImg: any;
 
   constructor(private starwarsApiService: StarwarsApiService ){}
 
-  showStarship(starship: Starship){
-    this.starship = starship;
-  
-    this.getStatshipImg(starship);  
+  ngOnInit(): void {
+    this.starship = this.starwarsApiService.getStarShip();  
+    this.getStarshipImg();
   }
 
-  getStatshipImg(starship:Starship){
-    let id: number = parseInt(starship.url!.slice(32,(starship.url!.length-1))  )
-    this.starwarsApiService.getShipImg(id)!.subscribe((data) =>
-  
-    this.showImg(data))
-    // this.shipImg = img);   
+  getStarshipImg(){
+    this.starwarsApiService.getShipImg()!.subscribe((data) =>
+      this.showImg(data));
   }
 
   showImg(data: Blob | string){
-
     if((typeof data) === "string"){
-      this.shipImg = data
+      this.shipImg = data;
     } else {
-      this.createImageFromBlob(data as Blob)
+      this.createImageFromBlob(data as Blob);
     }
   }
+
   createImageFromBlob(data: Blob) {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -49,21 +45,10 @@ export class StarshipComponent {
     if (data) { 
        reader.readAsDataURL(data);//initiates the reading operation and converts the contents of the Blob into a data URL
     }
-
- }
+   }
   
- handleImageError(event: any){
-  event.target.src =  "../../../../assets/images/starwarsLogo.svg";
- }
-
-
-  // getStarship(id: string){      
-  //     this.starwarsApiService.getStarships(id)
-  //     .subscribe( (starshipResponse) => 
-  //       this.starships=starshipsResponse.results
-  //     );  
-  // }
-  
-
+  handleImageError(event: any){
+    event.target.src =  "../../../../assets/images/noImage.webp";
+  }
   
 }

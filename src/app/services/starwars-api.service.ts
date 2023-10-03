@@ -1,8 +1,8 @@
 import { SafePropertyRead } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
-import { ApiResponse, StarshipImg} from '../interfaces/starship.interface';
+import { Observable, catchError, retry } from 'rxjs';
+import { ApiResponse, Starship, StarshipImg} from '../interfaces/starship.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,23 +10,37 @@ import { ApiResponse, StarshipImg} from '../interfaces/starship.interface';
 export class StarwarsApiService {
   baseInfoUrl: string = `https://swapi.dev/api/`;
   baseImgUrl: string = `https://starwars-visualguide.com/assets/img/starships/`;
-  
+
+  starship: Starship = {
+    name: "",
+    model: "",  
+  }
+
   constructor(
     private http: HttpClient,
   ) { }
 
+  
+
   getAllStarships(): Observable<ApiResponse>{
     return this.http.get<ApiResponse>(`${this.baseInfoUrl}/starships/`);
   }
+ 
+  setStarship(starship: Starship){
+    this.starship = starship;
+  }
 
-  getShipImg(id: number) {
-    
+  getStarShip():Starship{
+    return this.starship;
+  }
+
+  getShipImg() {
+      let id = parseInt(this.starship.url!.slice(32,(this.starship.url!.length-1)))
       return this.http.get(`${this.baseImgUrl}${id}.jpg`, { responseType: 'blob' })
-      
-    
-   
-  
-}
+      .pipe(
+        catchError(this.handleImgError)
+      )
+  }
 
 
   handleImgError(error: HttpErrorResponse): string{
