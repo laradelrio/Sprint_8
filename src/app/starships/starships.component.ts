@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { StarwarsApiService } from '../services/starwars-api.service';
-import { ApiResponse, Starship } from '../interfaces/starship.interface';
+import { Starship } from '../interfaces/starship.interface';
 import { StarshipComponent } from './components/starship/starship.component';
 
 @Component({
@@ -30,7 +30,8 @@ export class StarshipsComponent implements OnInit {
       );  
   }
   
-  showStarship(starship: Starship){
+  showStarship(starship: Starship, event:any){
+    event.target.class= "btn btn-primary text-light invisible"
     this. infoOpen = true;
     this.starwarsApiService.setStarship(starship)
     this.clickedShipName = starship.name;
@@ -42,18 +43,13 @@ export class StarshipsComponent implements OnInit {
     this.clickedShipName = "";
   }
 
-  scrollLoad: boolean=false;
+  scrollLoad: boolean = false;
   onScroll(){
-    
     this.scrollLoad = true;
     console.log(this.scrollLoad)
     console.log("scrolled")
     this.starwarsApiService.getAllStarships()
-    .subscribe((starshipsResponse) => 
-      starshipsResponse.results.forEach((result)=>
-      this.starships.push(result))
+      .subscribe((starshipsResponse) => starshipsResponse.results.forEach((result) => this.starships.push(result))
       );  
-    this.scrollLoad = false;
-
   }
 }

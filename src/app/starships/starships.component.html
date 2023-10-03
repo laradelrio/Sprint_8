@@ -1,4 +1,7 @@
-<app-starships-spinner id="mainLoader" *ngIf="starships.length===0"></app-starships-spinner>
+<div *ngIf="starships.length===0" class="bg-primary" id="initialLoader">
+    <app-starships-spinner id="mainLoader"></app-starships-spinner>
+</div>
+
 <div class="container w-75 pt-2">
     <div *ngFor="let starship of starships" class="rounded bg-secondary pb-2 ps-3 pt-3 m-4 text-light" >
         <div class="d-flex">
@@ -6,11 +9,16 @@
             <h6 *ngIf="starship.name !== clickedShipName">{{starship.name | uppercase}}</h6>
             <p *ngIf="starship.name !== clickedShipName">{{starship.model}}</p>
             </section>
-            <section class="col-1 align-self-top ">
-                <button *ngIf="infoOpen === false" (click)="showStarship(starship)" class="btn btn-primary text-light">
+            <section class="col-1 align-self-top" *ngIf="starship.name === clickedShipName">
+                <button *ngIf="infoOpen === false" (click)="showStarship(starship, $event)" class="btn btn-primary text-light">
                     <i class="fa-solid fa-chevron-down"></i> </button>
                 <button *ngIf="infoOpen === true" (click)="hideShipInfo()" class="btn btn-primary text-light">
                     <i class="fa-solid fa-chevron-up"></i> </button>
+            </section>
+
+            <section class="col-1 align-self-top ">
+                <button *ngIf="starship.name !== clickedShipName" (click)="showStarship(starship, $event)" class="btn btn-primary text-light">
+                    <i class="fa-solid fa-chevron-down"></i> </button>
             </section>
         </div>
         
@@ -18,5 +26,5 @@
     </div>
 
     <button *ngIf="starships.length!==0" (click)="onScroll()">More</button>
-    <app-starships-spinner *ngIf="scrollLoad === true"></app-starships-spinner>
+    <app-starships-spinner *ngIf="scrollLoad"></app-starships-spinner>
 </div>
