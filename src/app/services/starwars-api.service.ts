@@ -22,8 +22,8 @@ export class StarwarsApiService {
 
   
 
-  getAllStarships(): Observable<ApiResponse>{
-    return this.http.get<ApiResponse>(`${this.baseInfoUrl}/starships/`);
+  getAllStarships(pageNum:number): Observable<ApiResponse>{
+    return this.http.get<ApiResponse>(`${this.baseInfoUrl}/starships/?page=${pageNum}`);
   }
  
   setStarship(starship: Starship){

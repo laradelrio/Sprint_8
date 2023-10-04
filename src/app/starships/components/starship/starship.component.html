@@ -1,16 +1,16 @@
 <div class="text-light bg-secondary">
-    <h6 class=" border-top border-bottom border-info p-2 mb-2"> <b>{{starship.name | uppercase}}</b> </h6>
+    <h6 class="border-top border-bottom border-info p-2 mb-2 w-100"> <b>{{starship.name | uppercase}}</b> </h6>
     <div class="d-flex row">
-        <div class="col-4">
+        <div class="col-lg-4 col-md-12 border-left border-danger">
             <img [src]="shipImg" (error)="handleImageError($event)"/>
         </div>
-        <ul class="col-8 row d-flex justify-content-center">
-            <section class="col-6">
+        <ul class="col-lg-8 col-md-12 row d-flex justify-content-center">
+            <section class="col-lg-6 col-sm-12">
                 <li> <b>Model:</b> {{starship.model}} </li>
                 <li> <b>Cost in Credits:</b> {{starship.cost_in_credits}}</li>
                 <li> <b>Atmospheric Speed:</b> {{starship.max_atmosphering_speed}}</li>
             </section>
-            <section class="col-6">
+            <section class="col-lg-6 col-sm-12">
                 <li> <b>Manufacturer:</b> {{starship.manufacturer}}</li>
                 <li> <b>Length:</b> {{starship.length}}</li>
                 <li> <b>Crew:</b> {{starship.crew}}</li>
