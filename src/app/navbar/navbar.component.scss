@@ -1,4 +1,32 @@
+$primary: #0A0B0B;
+$secondary: #151515;
+$light: #B3B3B3;
+$info: #4C4C4C;
+
 button{
     min-width: 100px;
 }
 
+.active{
+    color: white;
+    text-shadow: 0px 0px 15px #00fff6;
+    border-top: #0A0B0B;
+    border-left: $info;
+    border-right: $info;
+    border-bottom: 2px solid white;
+    box-shadow: 0px 0px 25px #00fff6;
+    margin: 0;
+    background-color: $primary;
+    width:100%;
+    padding: 2px 20px 0px 20px;
+}
+
+.inactive{
+    color: $info;
+    border-color: $secondary;
+    border:none;
+    margin: 0;
+    background-color: $primary;
+    width:100%;
+    padding: 2px 20px 0px 20px;
+}

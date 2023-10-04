@@ -1,1 +1,25 @@
-<p>home works!</p>
+<div class="bg-primary main-container">
+  <p class="bg-primary text-light p-1 pt-3 fs-5 text-center">Find out everything about the starwars universe!</p>
+
+  <ngb-carousel>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper img1 text-light text-white ">
+        <div class="col-7 div-carousel-text d-flex-col h-100  pb-5" >
+          <h1 class="col-10 pb-2  text-center">STARWARS</h1>
+          <p class="col-8 offset-1 fs-4 text-center">The legendary franchise that became a worldwide pop culture phenomenon.</p>
+        </div>
+      </div> 
+    </ng-template>
+
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper img2 text-light text-white ">
+        <div class="col-7 div-carousel-text d-flex-col h-100  pb-5" >
+          <h1 class="col-10 pb-2  text-center">UP TO DATE <br> STARSHIPS LIST</h1>
+          <p class="col-8 offset-1 fs-4 text-center">Discover all the details about your favourite starships!</p>
+          <button class="offset-4 btn" routerLink="/starships"> See List </button>
+        </div>
+      </div> 
+    </ng-template>
+
+  </ngb-carousel>
+</div>

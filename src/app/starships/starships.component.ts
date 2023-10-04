@@ -35,7 +35,7 @@ export class StarshipsComponent implements OnInit {
 
   @HostListener('window:scroll' )  
   onScroll() {
-      
+
     let docHeight= document.documentElement.getBoundingClientRect().height;
     let amountScrolled = document.documentElement.scrollTop+window.innerHeight;
     let initialGet = this.starships.length === 0;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,14 +9,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NavbarComponent {
 
-  constructor( private activatedRoute: ActivatedRoute,){}
-
   homeClass: string = "inactive";
   starshipClass: string = "inactive";
 
-
-  ngOnInit() {
-    this.changeClass(window.location.pathname);
+  constructor(private router: Router) {
+    this.router.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd) { this.changeClass(window.location.pathname)}
+    });
   }
 
   changeClass(pathName: string){
