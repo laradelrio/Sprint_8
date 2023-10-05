@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StarshipsComponent } from './starships/starships.component';
-import { HomeComponent } from './home/home.component';
+import { StarshipsComponent } from './pages/starships/starships.component';
+import { HomeComponent } from './pages/home/home.component';
+
 
 const routes: Routes = [
-  {path:'', component: HomeComponent},
   {path: 'starships', component: StarshipsComponent},
   {path: 'home', component: HomeComponent},
   {path:'**', redirectTo:'/home'},

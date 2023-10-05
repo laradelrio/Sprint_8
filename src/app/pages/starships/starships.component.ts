@@ -1,7 +1,9 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import { StarwarsApiService } from '../services/starwars-api.service';
-import { Starship } from '../interfaces/starship.interface';
+import { StarwarsApiService } from 'src/app/services/starwars-api.service';
+import { Starship } from 'src/app/interfaces/starship.interface';
 import { StarshipComponent } from './components/starship/starship.component';
+
+
 
 @Component({
   selector: 'app-starships',
