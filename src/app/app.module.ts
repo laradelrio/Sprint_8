@@ -11,6 +11,9 @@ import { StarshipComponent } from './pages/starships/components/starship/starshi
 import { StarshipsComponent } from './pages/starships/starships.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,12 +25,15 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     HeaderComponent,
     SpinnerComponent,
     StarshipComponent,
+    RegisterComponent,
+    LoginComponent,
   ], 
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

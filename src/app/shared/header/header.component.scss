@@ -1,0 +1,26 @@
+$info: #4C4C4C;
+
+.btn {
+    color:white;
+    border-color: $info;
+    top: 20px;
+    right: 30px;
+    position: absolute;
+
+    &:hover{ 
+    border-color: white;
+    box-shadow: 0px 0px 5px #00fff6;
+    }
+}
+
+@media (max-width: 576px) {
+    .btn {
+        border:none;
+        right: 0px;
+        top: 5px;
+        &:hover{ 
+            border:none;
+            text-shadow: 0px 0px 5px #00fff6;
+        }
+    }
+}

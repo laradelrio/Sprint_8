@@ -3,8 +3,12 @@ $secondary: #151515;
 $light: #B3B3B3;
 $info: #4C4C4C;
 
+ul{
+    height:fit-content;
+}
+
 button{
-    min-width: 100px;
+    min-width: 200px;
 }
 
 .active{
@@ -29,4 +33,10 @@ button{
     background-color: $primary;
     width:100%;
     padding: 2px 20px 0px 20px;
+}
+
+@media (max-width: 576px) {
+    button{
+        min-width: 50px;
+    }
 }
