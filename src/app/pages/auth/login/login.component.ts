@@ -21,7 +21,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private formService: FormServiceService,
-    ){
+  ){
     this.loginForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
       password: ["", [
@@ -32,6 +32,7 @@ export class LoginComponent {
   }
 
   onSubmit(){
+
     if(this.loginForm.valid){
       console.log("sent");
       this.loginInvalid=false;
@@ -49,36 +50,6 @@ export class LoginComponent {
     return this.formService.getFieldError(field,this.loginForm);
   }
 }
-    
-//   isValidField(field: string): boolean | null{
-//     console.log ("form valid", this.loginForm.controls[field].errors && this.loginForm.controls[field].touched);
-//     return this.loginForm.controls[field].errors && this.loginForm.controls[field].touched;
-//   }
-
-//   getFieldError(field: string){
-    
-//     let errors =  this.loginForm.controls[field].errors  || {};
-//     let errorMessage: string = ""
-//     for(let error of Object.keys(errors)){
-//       switch(error){
-//         case 'required':
-//           errorMessage = "Required field";
-//           break;
-//         case 'email':
-//           errorMessage = 'Please enter a valid email';
-//           break;
-//         case 'pattern':
-//           errorMessage = 'Invalid password';
-//           break;
-//       }
-//     }
-
-//     return errorMessage;
-    
-//   }
-
-  
-// }
 
   
 

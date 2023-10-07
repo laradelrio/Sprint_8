@@ -1,3 +1,14 @@
 {
-    "users": [ ]
+  "users": [
+    {
+      "email": "asd@gmail.com",
+      "password": "$2a$10$hytEaIVCh5jwtovPrpYAVeAwKSXH12xBy/GsC7wSLQzHyYyl9NabO",
+      "id": 1
+    },
+    {
+      "email": "asd@gmail.coma",
+      "password": "$2a$10$/eriCoxFNRzjrww07CPc8uTBpIAGEYx0HBEXkJNlCNkz19.Gj4lKO",
+      "id": 2
+    }
+  ]
 }
