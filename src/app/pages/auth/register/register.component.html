@@ -9,7 +9,8 @@
 
         <div class="bg-white rounded p-4 mt-2">
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="p-3 mb-3">
-                <h2 class="mb-4">Sign Up {{response}}</h2>
+                <h2 class="mb-4">Sign Up </h2>
+                <h2>Check {{registerError}}</h2>
 
                 <div *ngFor="let data of  signUpForm" class="form-floating mb-3">
                     <input [type]="data.type" [formControlName]="data.name"
