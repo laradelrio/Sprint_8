@@ -14,6 +14,7 @@ import { __values } from 'tslib';
 export class RegisterComponent {
 
   registerForm: FormGroup;
+  successfulRegistration: boolean = false;
   // registeredInvalid: boolean = false;
 
   signUpForm: Form[] = [
@@ -41,18 +42,15 @@ export class RegisterComponent {
     });
   }
 
-
   samePassword() {
     return this.registerForm.get('password')?.value === this.registerForm.get('password2')?.value
   }
 
-
-  registerError: string = "";
+  registerMessage: string = "";
 
   onSubmit() {
     let errors: HttpErrorResponse;
     let response: Object;
-    this.registerError = "";
 
     if (this.registerForm.valid && this.samePassword()) {
       console.log("sent");
@@ -60,12 +58,11 @@ export class RegisterComponent {
         .pipe(
           finalize(() => {
             if (errors) {
-              console.log("errors", errors.error);
-              this.registerError = errors.error;
-
+              this.successfulRegistration = false;
+              this.registerMessage = errors.error;
             } else {
-              this.registerError = "account Created Succecfully";
-              console.log("object");
+              this.successfulRegistration=true;
+              this.registerMessage = "Account created successfully!";
             }
           })
         )
@@ -74,10 +71,11 @@ export class RegisterComponent {
           error: (error) => (errors = error, console.log('error', error))
         });
     } else {
-      if (!this.samePassword()) { }
-      console.log("not valid");
+      if (!this.samePassword()) {
+        this.successfulRegistration = false;
+        this.registerMessage = "Passwords don't match";
+      }
     }
-
   }
 
   isValidField(field: string): boolean | null {
