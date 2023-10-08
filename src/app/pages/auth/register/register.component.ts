@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
-import { Form, User } from 'src/app/interfaces/form.interface';
+import { Form } from 'src/app/interfaces/form.interface';
 import { FormServiceService } from 'src/app/services/form-service.service';
-import { __values } from 'tslib';
+// import { __values } from 'tslib';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +15,7 @@ export class RegisterComponent {
 
   registerForm: FormGroup;
   successfulRegistration: boolean = false;
-  // registeredInvalid: boolean = false;
+  registerErrorMsg: string = "";
 
   signUpForm: Form[] = [
     { name: "email", label: "Email address", type: "text" },
@@ -23,7 +23,7 @@ export class RegisterComponent {
     { name: "password2", label: "Repeat Password", type: "password" },
   ]
 
-  pwsPattern: string = `^(?=.*[A-Z])(?=.*[a-z])(?=.*\d){8,}$`
+  // pwsPattern: string = `^(?=.*[A-Z])(?=.*[a-z])(?=.*\d){8,}$`
 
   constructor(
     private fb: FormBuilder,
@@ -33,10 +33,12 @@ export class RegisterComponent {
       email: ["", [Validators.required, Validators.email]],
       password: ["", [
         Validators.required,
+        Validators.minLength(6),
         // Validators.pattern(this.pwsPattern)
       ]],
       password2: ["", [
         Validators.required,
+        Validators.minLength(6),
         // Validators.pattern("^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$"),
       ]],
     });
@@ -46,8 +48,7 @@ export class RegisterComponent {
     return this.registerForm.get('password')?.value === this.registerForm.get('password2')?.value
   }
 
-  registerMessage: string = "";
-
+  
   onSubmit() {
     let errors: HttpErrorResponse;
     let response: Object;
@@ -59,10 +60,10 @@ export class RegisterComponent {
           finalize(() => {
             if (errors) {
               this.successfulRegistration = false;
-              this.registerMessage = errors.error;
+              this.registerErrorMsg = errors.error;
             } else {
               this.successfulRegistration=true;
-              this.registerMessage = "Account created successfully!";
+              this.formService.token = response;
             }
           })
         )
@@ -73,7 +74,7 @@ export class RegisterComponent {
     } else {
       if (!this.samePassword()) {
         this.successfulRegistration = false;
-        this.registerMessage = "Passwords don't match";
+        this.registerErrorMsg = "Passwords don't match";
       }
     }
   }

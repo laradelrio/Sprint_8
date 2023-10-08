@@ -1,6 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Form } from 'src/app/interfaces/form.interface';
+import { RouterLink } from '@angular/router';
+import { finalize } from 'rxjs';
+import { Form, Jwt } from 'src/app/interfaces/form.interface';
 import { FormServiceService } from 'src/app/services/form-service.service';
 
 @Component({
@@ -12,7 +15,8 @@ export class LoginComponent {
 
   loginForm: FormGroup;
   loginInvalid: boolean = false;
-
+  loginErrorMsg: string = ""
+  
   signInForm: Form[] =[
     {name: "email", label: "Email address", type: "text"},
     {name: "password", label: "Password", type: "password"},
@@ -26,19 +30,35 @@ export class LoginComponent {
       email: ["", [Validators.required, Validators.email]],
       password: ["", [
         Validators.required, 
-        Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\.\-_])[A-Za-z\d@$!%*?&\.\-_]{8,}$"),
+        Validators.minLength(6),
       ]],
     });
   }
 
   onSubmit(){
-
+    let errors: HttpErrorResponse;
+    let response: Object;
     if(this.loginForm.valid){
-      console.log("sent");
-      this.loginInvalid=false;
+      this.formService.loginUser(this.loginForm.value)
+      .pipe(
+        finalize(()=>{
+       if(errors){
+        this.loginErrorMsg = errors.error;
+        (console.log=(errors.error));
+       } else {
+        this.formService.token = response;
+
+        this.loginErrorMsg = "DOne";
+        console.log(response);
+      } 
+      })
+      )
+      .subscribe({
+        next: (resp: Object) => (response = resp),
+        error: (error: HttpErrorResponse) => (errors = error),
+      })
     }else{
-      this.loginInvalid=true;
-      console.log("not valid");
+     this.loginErrorMsg = "Incorrect email or Password";
     }
   }
 

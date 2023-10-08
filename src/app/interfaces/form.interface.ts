@@ -9,3 +9,11 @@ export interface User{
     "password": string,
     "password2"?: string,
 }
+
+export interface Jwt{
+    accessToken: string;
+    user:{
+        email: string, 
+        id: number;
+    }
+}

@@ -19,7 +19,7 @@
                     <p *ngIf="isValidField(data.name)" class="text-danger form-text">{{getFieldError(data.name)}}</p>
                     <p *ngIf="data.name==='password'" class="form-text text-primary">Forgot password?</p>
                 </div>
-
+                <p class = 'text-danger w-100 text-center'> {{loginErrorMsg}}</p>
                 <button type="submit" class="btn w-100 mt-2 submitBtn">Submit</button>
             </form>
 

@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
-import { ApiResponse, Starship } from '../interfaces/starship.interface';
+import { ApiResponse, Film, Starship } from '../interfaces/starship.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StarwarsApiService {
   baseInfoUrl: string = `https://swapi.dev/api/`;
-  baseImgUrl: string = `https://starwars-visualguide.com/assets/img/starships/`;
+  baseImgUrl: string = `https://starwars-visualguide.com/assets/img`;
+  
 
   starship: Starship = {
     name: "",
@@ -31,16 +32,12 @@ export class StarwarsApiService {
     return this.starship;
   }
 
-  getShipImg() {
-      let id = parseInt(this.starship.url!.slice(32,(this.starship.url!.length-1)))
-      return this.http.get(`${this.baseImgUrl}${id}.jpg`, { responseType: 'blob' })
-      .pipe(
-        catchError(this.handleImgError)
-      )
+  getImg(endpoint: string,id:number) {
+      return this.http.get(`${this.baseImgUrl}/${endpoint}/${id}.jpg`, { responseType: 'blob' });
   }
 
-  handleImgError(error: HttpErrorResponse): string{
-    return  "../../../../assets/images/starwarsLogo.svg";
+  getFilmName(filmId:number): Observable<Film>{
+    return this.http.get<Film>(`${this.baseInfoUrl}/films/${filmId}`);
   }
   
 }

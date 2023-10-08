@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/form.interface';
+import { Observable, of } from 'rxjs';
 
 
 
@@ -13,8 +14,7 @@ export class FormServiceService {
   formInvalid: boolean = false;
   // baseUrl = window.location.origin
   baseUrl = "http://localhost:3000";
-
-  registerError:any;
+  token: Object = [];
 
   constructor(
     private http: HttpClient,) { }
@@ -35,7 +35,7 @@ export class FormServiceService {
         case 'email':
           errorMessage = 'Please enter a valid email';
           break;
-        case 'pattern':
+        case 'minLength':
           errorMessage = 'Invalid password';
           break;
       }
@@ -43,23 +43,26 @@ export class FormServiceService {
     return errorMessage;
   }
 
-
-
   registerUser(form: FormGroup) {
-
     let user: User = {
       "email" : form.get('email')?.value, 
-      "password" : form.get('password')?.value };
+      "password" : form.get('password')?.value }; 
 
-    this.registerError = null;
-    return this.http
-    .post(`${this.baseUrl}/users`, user)
+    return this.http.post(`${this.baseUrl}/users`, user);
   }
-  
-  
 
-  getUser(form: FormGroup){
-     return this.http.get<User>(`${this.baseUrl}/users`, form.value);
+  loginUser(form: FormGroup){ //get one user, not all
+
+    return this.http.post(`${this.baseUrl}/login`, form);
+  }
+
+  getAuthToken(): Observable<boolean>{
+    return of(true);
+
+  }
+
+  verifyTokenValidity(){
+    return this.http.get(`${this.baseUrl}/users`)
   }
 
 

@@ -1,0 +1,9 @@
+<div *ngFor="let film of this.filmNames, let i = index">
+    <p>{{film}}</p>
+    <img [src]="this.filmsImgs[i]">
+</div>
+
+<p>films works!</p>
+
+<p *ngFor="let film of this.filmNames">{{film}}</p>
+<img *ngFor="let img of filmsImgs" [src]="img">

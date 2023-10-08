@@ -24,7 +24,8 @@ export class StarshipComponent implements OnInit{
   }
 
   getStarshipImg(){
-    this.starwarsApiService.getShipImg()!.subscribe((data) =>
+    let id = parseInt(this.starship.url!.slice(32,(this.starship.url!.length-1)))
+    this.starwarsApiService.getImg("starships",id)!.subscribe((data) =>
       this.showImg(data));
   }
 

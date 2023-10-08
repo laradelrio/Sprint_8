@@ -14,6 +14,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FilmsComponent } from './pages/starships/components/starship/films/films.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     StarshipComponent,
     RegisterComponent,
     LoginComponent,
+    FilmsComponent,
   ], 
   imports: [
     BrowserModule,
