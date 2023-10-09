@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { ApiResponse, Film, Starship } from '../interfaces/starship.interface';
+import { ApiResponse, Film, Pilot, Starship } from '../interfaces/starship.interface';
 import jwt_decode from "jwt-decode";
 import { decodedToken } from '../interfaces/form.interface';
 
@@ -39,8 +39,13 @@ export class StarwarsApiService {
   }
 
   getFilmName(filmId: number): Observable<Film> {
-    return this.http.get<Film>(`${this.baseInfoUrl}/films/${filmId}`);
-  }
+    return this.http.get<Film>(`${this.baseInfoUrl}films/${filmId}`);
+    
+  } 
+  getPilotName(filmId: number): Observable<Pilot> {
+    return this.http.get<Pilot>(`${this.baseInfoUrl}people/${filmId}`);
+  } 
+
 
   validateToken$(): Observable<boolean> {
     let token = localStorage.getItem("token");

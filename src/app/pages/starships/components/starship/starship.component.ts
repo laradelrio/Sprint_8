@@ -16,6 +16,8 @@ export class StarshipComponent implements OnInit{
 
   shipImg: any;
 
+  starshiPilots = this.starwarsApiService.starship.pilots?.length;
+
   constructor(private starwarsApiService: StarwarsApiService ){}
 
   ngOnInit(): void {
