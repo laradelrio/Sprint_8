@@ -1,9 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
-import { Form, Jwt } from 'src/app/interfaces/form.interface';
+import { Form, respToken } from 'src/app/interfaces/form.interface';
 import { FormServiceService } from 'src/app/services/form-service.service';
 
 @Component({
@@ -22,9 +22,12 @@ export class LoginComponent {
     {name: "password", label: "Password", type: "password"},
   ]
 
+
   constructor(
     private fb: FormBuilder,
     private formService: FormServiceService,
+    private router: Router,
+
   ){
     this.loginForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
@@ -37,25 +40,22 @@ export class LoginComponent {
 
   onSubmit(){
     let errors: HttpErrorResponse;
-    let response: Object;
+    let response: respToken;
     if(this.loginForm.valid){
       this.formService.loginUser(this.loginForm.value)
       .pipe(
         finalize(()=>{
        if(errors){
         this.loginErrorMsg = errors.error;
-        (console.log=(errors.error));
        } else {
-        this.formService.token = response;
-
-        this.loginErrorMsg = "DOne";
-        console.log(response);
+        localStorage.setItem("token",response.accessToken)
+        this.router.navigate(['/starships']);       
       } 
       })
       )
       .subscribe({
-        next: (resp: Object) => (response = resp),
-        error: (error: HttpErrorResponse) => (errors = error),
+        next: (resp: any) => (response = resp),
+        error: (error: HttpErrorResponse)  => (errors = error),
       })
     }else{
      this.loginErrorMsg = "Incorrect email or Password";

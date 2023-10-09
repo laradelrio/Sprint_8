@@ -27,7 +27,7 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private formService: FormServiceService
+    private formService: FormServiceService,
   ) {
     this.registerForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
@@ -62,8 +62,7 @@ export class RegisterComponent {
               this.successfulRegistration = false;
               this.registerErrorMsg = errors.error;
             } else {
-              this.successfulRegistration=true;
-              this.formService.token = response;
+              this.successfulRegistration = true;
             }
           })
         )

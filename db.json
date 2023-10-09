@@ -219,6 +219,16 @@
       "email": "asdee@gmail.com",
       "password": "$2a$10$qS.yEGUZAKTWvcVQj1YTye0lttt1pAm2mbyYOKIH.NMQRAqhoZ5vi",
       "id": 44
+    },
+    {
+      "email": "asdasfsga@gmail.com",
+      "password": "$2a$10$UrqTbWu4Xd.JM0HUqYGr3u0jL6fP3qryBK4hk4WCWDmcQ0cs3sbDC",
+      "id": 45
+    },
+    {
+      "email": "test1@gmail.com",
+      "password": "$2a$10$ndDqBt13O57wFejmjTKZYesuN2cifbV4Hfj2xDHZ6LQslsIi2HH.y",
+      "id": 46
     }
   ]
 }

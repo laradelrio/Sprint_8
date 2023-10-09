@@ -4,6 +4,8 @@
          class="ml-auto" 
          routerLink="/home">
     
-    <button class="btn align-self-start " routerLink="/login">SIGN IN</button>
+    <button *ngIf="!isLoggedIn" class="btn align-self-start" routerLink="/login">SIGN IN</button>
+    <button *ngIf="isLoggedIn" class="btn align-self-start" (click)="logOut()" routerLink="/home">
+        <i class="fa-solid fa-right-from-bracket"></i></button>
     
 </header>

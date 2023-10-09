@@ -4,10 +4,11 @@ import { StarshipsComponent } from './pages/starships/starships.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { LoginComponent } from './pages/auth/login/login.component';
+import { authGuardGuard } from './guards/auth-guard.guard';
 
 
 const routes: Routes = [
-  {path: 'starships', component: StarshipsComponent},
+  {path: 'starships', component: StarshipsComponent, canActivate: [authGuardGuard]},
   {path: 'home', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},

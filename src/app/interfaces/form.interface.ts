@@ -10,10 +10,16 @@ export interface User{
     "password2"?: string,
 }
 
-export interface Jwt{
-    accessToken: string;
-    user:{
-        email: string, 
-        id: number;
+export interface decodedToken{
+    foo: string,
+    exp: number,
+    number: 1393268893;
+}
+
+export interface respToken{
+    accessToken: string,
+    user: {
+        email: string,
+        id: number,
     }
 }
