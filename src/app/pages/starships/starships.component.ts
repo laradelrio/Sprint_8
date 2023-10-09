@@ -2,9 +2,6 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { StarwarsApiService } from 'src/app/services/starwars-api.service';
 import { Starship } from 'src/app/interfaces/starship.interface';
 import { StarshipComponent } from './components/starship/starship.component';
-import { finalize } from 'rxjs';
-
-
 
 @Component({
   selector: 'app-starships',
@@ -32,10 +29,8 @@ export class StarshipsComponent implements OnInit {
         this.starwarsApiService.getAllStarships(1)
         .subscribe( (starshipsResponse) => 
           this.starships=starshipsResponse.results
-        )
-        
+        );      
   }
-
 
   @HostListener('window:scroll' )  
   onScroll() {
@@ -61,8 +56,7 @@ export class StarshipsComponent implements OnInit {
       this.scrolled = true;
     } else{
       this.scrolled = false;
-    }
-    
+    }; 
   }
 
   backToTop(){

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize } from 'rxjs';
 import { StarwarsApiService } from 'src/app/services/starwars-api.service';
 
 @Component({
@@ -17,6 +16,7 @@ export class FilmsComponent implements OnInit{
   
   ngOnInit(): void {
     this.getFilmNames();
+    console.log("length",this.filmsImgs.length)
   }
 
   getFilmNames(){
@@ -35,21 +35,7 @@ export class FilmsComponent implements OnInit{
       this.starwarsApiService.getImg("films", filmId)
       .subscribe({
         next:  (img)=> { this.filmsImgs.push( URL.createObjectURL(img))} });
-
-      
     })
-
   }
-
-
-
-   
-
-   
-
-   
-   
-  
-
   
 }

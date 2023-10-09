@@ -12,7 +12,6 @@ import { Observable, of } from 'rxjs';
 export class FormServiceService {
 
   formInvalid: boolean = false;
-  // baseUrl = window.location.origin
   baseUrl = "http://localhost:3000";
   token: Object = [];
 

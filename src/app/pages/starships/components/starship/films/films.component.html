@@ -1,9 +1,8 @@
-<div *ngFor="let film of this.filmNames, let i = index">
-    <p>{{film}}</p>
-    <img [src]="this.filmsImgs[i]">
+<h6 class="border-top border-bottom border-info p-2 mb-2 mt-3 w-100 pt-2"> <b>Films</b> </h6>
+<p *ngIf="filmNames.length === 0" class="w-100 text-center pt-2">loading...</p>
+<div class=" d-flex justify-content-center flex-wrap w-100">
+    <div *ngFor="let film of this.filmNames, let i = index" class="card-div pe-3">
+        <img [src]="this.filmsImgs[i]" class="w-100 rounded-top">
+        <p class="w-100 p-2 text-center rounded-bottom" id="filmName">{{film}}</p>
+    </div>
 </div>
-
-<p>films works!</p>
-
-<p *ngFor="let film of this.filmNames">{{film}}</p>
-<img *ngFor="let img of filmsImgs" [src]="img">

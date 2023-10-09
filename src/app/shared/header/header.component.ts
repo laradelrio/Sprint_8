@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { take, tap } from 'rxjs';
 import { StarwarsApiService } from 'src/app/services/starwars-api.service';
 
 @Component({
@@ -14,8 +13,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.checkIfLoggedIn();
   }
-
- 
 
   checkIfLoggedIn(){
     this.starwarsApiService.validateToken$()

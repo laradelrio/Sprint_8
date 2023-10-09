@@ -44,7 +44,7 @@ export class StarshipComponent implements OnInit{
     }, false);
  
     if (data) { 
-       reader.readAsDataURL(data);//initiates the reading operation and converts the contents of the Blob into a data URL
+       reader.readAsDataURL(data); //initiates the reading operation and converts the contents of the Blob into a data URL
     }
    }
   
