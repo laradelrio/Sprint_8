@@ -26,21 +26,12 @@ export class PilotsComponent {
       let pilotId: number =  parseInt(pilot!.slice(29,(pilot.length-1)));
 
       this.starwarsApiService.getPilotName(pilotId)
-      .pipe(
-        finalize(()=>
-          console.log(this.pilotNames)
-        )
-      ).subscribe( (response) => 
+      .subscribe( (response) => 
         this.pilotNames.push(response.name)
         )
   
 
       this.starwarsApiService.getImg("characters", pilotId)
-      .pipe(
-        finalize(()=>
-          console.log(this.pilotsImgs)
-        )
-      )
       .subscribe({
         next:  (img)=> { this.pilotsImgs.push( URL.createObjectURL(img))} });
     })
