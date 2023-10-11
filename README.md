@@ -1,27 +1,20 @@
 # StarWars
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
+## Overview
+Explore Starship details, images, pilots, and movies. A Star Wars web application with user registration and authentication.
 
-## Development server
+## Features
+- User registration, login and JWT-based authentication.
+- Fake JSON server for user data storage
+- Route protection for the starships section. 
+- Access to Starship information, including image, pilots, and movies.
+- Infinite scroll for browsing Starships.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## API Usage
+- The app uses API calls for Starship, pilot and movies data and images.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Getting Started
+1. Clone the repo.
+2. Install dependencies with `npm install`.
+3. Start the JSON server for user data with `json-server db.json -m ./node_modules/json-server-auth``.
+4. Launch the app with `npm start`
